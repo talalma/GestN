@@ -1,0 +1,96 @@
+﻿{
+	"toJSON": true,
+	"extraProperties": {
+		"version": "2",
+		"classes": {
+			"Annee": {
+				"panelColor": "#70CCC2",
+				"panel": {
+					"isOpen": "true",
+					"position": {
+						"X": 25,
+						"Y": 20
+					},
+					"pathVisible": true
+				}
+			},
+			"Etudiant": {
+				"panelColor": "#fff",
+				"panel": {
+					"isOpen": "true",
+					"position": {
+						"X": 265,
+						"Y": 20
+					},
+					"pathVisible": true
+				}
+			}
+		},
+		"model": {
+			"scriptMode": "manual",
+			"workspaceLeft": 0,
+			"workspaceTop": 0
+		}
+	},
+	"dataClasses": [
+		{
+			"collectionName": "AnneeCollection",
+			"className": "Annee",
+			"attributes": [
+				{
+					"name": "ID",
+					"kind": "storage",
+					"type": "long",
+					"autosequence": "true",
+					"unique": "true",
+					"primKey": "true"
+				},
+				{
+					"name": "AnneeScolaire",
+					"scope": "public",
+					"type": "long",
+					"kind": "storage"
+				},
+				{
+					"name": "NombreEtudiant",
+					"scope": "public",
+					"type": "long",
+					"kind": "storage"
+				}
+			]
+		},
+		{
+			"collectionName": "EtudiantCollection",
+			"className": "Etudiant",
+			"attributes": [
+				{
+					"name": "ID",
+					"kind": "storage",
+					"type": "long",
+					"autosequence": "true",
+					"unique": "true",
+					"primKey": "true"
+				},
+				{
+					"name": "Nom",
+					"scope": "public",
+					"type": "string",
+					"kind": "storage"
+				},
+				{
+					"name": "Prenom",
+					"scope": "public",
+					"type": "string",
+					"kind": "storage"
+				},
+				{
+					"name": "Age",
+					"scope": "public",
+					"type": "long",
+					"kind": "storage"
+				}
+			]
+		}
+	],
+	"type": []
+}
