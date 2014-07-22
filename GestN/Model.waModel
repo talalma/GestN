@@ -9,8 +9,8 @@
 					"isOpen": "true",
 					"pathVisible": true,
 					"position": {
-						"X": 25,
-						"Y": 20
+						"X": 39,
+						"Y": 28
 					}
 				}
 			},
@@ -20,8 +20,8 @@
 					"isOpen": "true",
 					"pathVisible": true,
 					"position": {
-						"X": 265,
-						"Y": 20
+						"X": 61,
+						"Y": 318
 					}
 				}
 			},
@@ -29,20 +29,39 @@
 				"panelColor": "#B7DDE8",
 				"panel": {
 					"isOpen": "true",
+					"pathVisible": true,
 					"position": {
-						"X": 25,
-						"Y": 234
-					},
-					"pathVisible": true
+						"X": 433,
+						"Y": 31
+					}
 				}
 			},
 			"Element": {
 				"panelColor": "#8DB3E2",
 				"panel": {
 					"isOpen": "true",
+					"pathVisible": true,
 					"position": {
-						"X": 251,
-						"Y": 229
+						"X": 744,
+						"Y": 61
+					}
+				}
+			},
+			"Resultats": {
+				"panelColor": "#B8CCE4",
+				"panel": {
+					"isOpen": "true",
+					"position": {
+						"X": 224,
+						"Y": 20
+					}
+				}
+			},
+			"DataClass1": {
+				"panel": {
+					"position": {
+						"X": 483,
+						"Y": 355
 					},
 					"pathVisible": true
 				}
@@ -74,13 +93,71 @@
 					"name": "AnneeScolaire",
 					"kind": "storage",
 					"scope": "public",
-					"type": "long"
+					"type": "number"
 				},
 				{
 					"name": "NombreEtudiant",
 					"kind": "storage",
 					"scope": "public",
-					"type": "long"
+					"type": "number"
+				},
+				{
+					"name": "Modules",
+					"scope": "public",
+					"reversePath": true,
+					"path": "annee",
+					"type": "ModuleCollection",
+					"kind": "relatedEntities"
+				},
+				{
+					"name": "Note",
+					"scope": "public",
+					"type": "number",
+					"kind": "storage"
+				},
+				{
+					"name": "Passage",
+					"scope": "public",
+					"type": "bool",
+					"kind": "calculated",
+					"scriptKind": "javascript"
+				},
+				{
+					"name": "Results",
+					"kind": "relatedEntity",
+					"type": "DataClass1",
+					"path": "DataClass1",
+					"scope": "public"
+				}
+			]
+		},
+		{
+			"name": "Element",
+			"className": "Element",
+			"collectionName": "ElementCollection",
+			"scope": "public",
+			"attributes": [
+				{
+					"name": "ID",
+					"kind": "storage",
+					"scope": "public",
+					"unique": true,
+					"autosequence": true,
+					"type": "long",
+					"primKey": true
+				},
+				{
+					"name": "Note",
+					"kind": "storage",
+					"scope": "public",
+					"type": "number"
+				},
+				{
+					"name": "module",
+					"kind": "relatedEntity",
+					"type": "Module",
+					"path": "Module",
+					"scope": "public"
 				}
 			]
 		},
@@ -113,64 +190,124 @@
 				},
 				{
 					"name": "Age",
-					"kind": "storage",
+					"kind": "calculated",
 					"scope": "public",
-					"type": "long"
-				}
-			]
-		},
-		{
-			"collectionName": "ModuleCollection",
-			"className": "Module",
-			"attributes": [
-				{
-					"name": "ID",
-					"kind": "storage",
-					"type": "long",
-					"autosequence": "true",
-					"unique": "true",
-					"primKey": "true"
+					"type": "number",
+					"scriptKind": "javascript"
 				},
 				{
-					"name": "Valide",
+					"name": "AnneeIntegration",
 					"scope": "public",
-					"type": "bool",
+					"type": "number",
 					"kind": "storage"
 				},
 				{
-					"name": "Elem",
+					"name": "NiveauINE",
 					"scope": "public",
-					"path": "Element",
-					"type": "Element",
-					"kind": "relatedEntity"
+					"type": "string",
+					"kind": "calculated",
+					"scriptKind": "javascript"
+				},
+				{
+					"name": "AnneeCourante",
+					"scope": "public",
+					"type": "number",
+					"kind": "storage"
+				},
+				{
+					"name": "DateNaissance",
+					"scope": "public",
+					"type": "date",
+					"kind": "storage"
+				},
+				{
+					"name": "Final",
+					"scope": "public",
+					"reversePath": true,
+					"path": "Etudia",
+					"type": "DataClass1Collection",
+					"kind": "relatedEntities"
 				}
 			]
 		},
 		{
-			"collectionName": "ElementCollection",
-			"className": "Element",
+			"name": "Module",
+			"className": "Module",
+			"collectionName": "ModuleCollection",
+			"scope": "public",
 			"attributes": [
 				{
 					"name": "ID",
 					"kind": "storage",
+					"scope": "public",
+					"unique": true,
+					"autosequence": true,
 					"type": "long",
-					"autosequence": "true",
-					"unique": "true",
-					"primKey": "true"
+					"primKey": true
+				},
+				{
+					"name": "Valide",
+					"kind": "calculated",
+					"scope": "public",
+					"type": "bool",
+					"scriptKind": "javascript"
 				},
 				{
 					"name": "Note",
 					"scope": "public",
-					"type": "string",
+					"type": "number",
 					"kind": "storage"
 				},
 				{
-					"name": "moduleCollection",
+					"name": "Elements",
 					"scope": "public",
 					"reversePath": true,
-					"path": "Elem",
-					"type": "ModuleCollection",
+					"path": "module",
+					"type": "ElementCollection",
 					"kind": "relatedEntities"
+				},
+				{
+					"name": "annee",
+					"kind": "relatedEntity",
+					"type": "Annee",
+					"path": "Annee",
+					"scope": "public"
+				}
+			]
+		},
+		{
+			"collectionName": "DataClass1Collection",
+			"className": "DataClass1",
+			"attributes": [
+				{
+					"name": "ID",
+					"kind": "storage",
+					"type": "long",
+					"autosequence": "true",
+					"unique": "true",
+					"primKey": "true"
+				},
+				{
+					"name": "annee",
+					"scope": "public",
+					"type": "AnneeCollection",
+					"kind": "relatedEntities",
+					"reversePath": true,
+					"path": "Results"
+				},
+				{
+					"name": "Etudia",
+					"scope": "public",
+					"type": "Etudiant",
+					"kind": "relatedEntity",
+					"path": "Etudiant"
+				},
+				{
+					"name": "Niveau",
+					"scope": "public",
+					"path": "Etudiant.NiveauINE",
+					"type": "string",
+					"kind": "alias"
 				}
 			]
 		}
