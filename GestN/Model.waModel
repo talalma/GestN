@@ -7,20 +7,42 @@
 				"panelColor": "#70CCC2",
 				"panel": {
 					"isOpen": "true",
+					"pathVisible": true,
 					"position": {
 						"X": 25,
 						"Y": 20
-					},
-					"pathVisible": true
+					}
 				}
 			},
 			"Etudiant": {
 				"panelColor": "#fff",
 				"panel": {
 					"isOpen": "true",
+					"pathVisible": true,
 					"position": {
 						"X": 265,
 						"Y": 20
+					}
+				}
+			},
+			"Module": {
+				"panelColor": "#B7DDE8",
+				"panel": {
+					"isOpen": "true",
+					"position": {
+						"X": 25,
+						"Y": 234
+					},
+					"pathVisible": true
+				}
+			},
+			"Element": {
+				"panelColor": "#8DB3E2",
+				"panel": {
+					"isOpen": "true",
+					"position": {
+						"X": 251,
+						"Y": 229
 					},
 					"pathVisible": true
 				}
@@ -34,34 +56,72 @@
 	},
 	"dataClasses": [
 		{
-			"collectionName": "AnneeCollection",
+			"name": "Annee",
 			"className": "Annee",
+			"collectionName": "AnneeCollection",
+			"scope": "public",
 			"attributes": [
 				{
 					"name": "ID",
 					"kind": "storage",
+					"scope": "public",
+					"unique": true,
+					"autosequence": true,
 					"type": "long",
-					"autosequence": "true",
-					"unique": "true",
-					"primKey": "true"
+					"primKey": true
 				},
 				{
 					"name": "AnneeScolaire",
+					"kind": "storage",
 					"scope": "public",
-					"type": "long",
-					"kind": "storage"
+					"type": "long"
 				},
 				{
 					"name": "NombreEtudiant",
+					"kind": "storage",
 					"scope": "public",
-					"type": "long",
-					"kind": "storage"
+					"type": "long"
 				}
 			]
 		},
 		{
-			"collectionName": "EtudiantCollection",
+			"name": "Etudiant",
 			"className": "Etudiant",
+			"collectionName": "EtudiantCollection",
+			"scope": "public",
+			"attributes": [
+				{
+					"name": "ID",
+					"kind": "storage",
+					"scope": "public",
+					"unique": true,
+					"autosequence": true,
+					"type": "long",
+					"primKey": true
+				},
+				{
+					"name": "Nom",
+					"kind": "storage",
+					"scope": "public",
+					"type": "string"
+				},
+				{
+					"name": "Prenom",
+					"kind": "storage",
+					"scope": "public",
+					"type": "string"
+				},
+				{
+					"name": "Age",
+					"kind": "storage",
+					"scope": "public",
+					"type": "long"
+				}
+			]
+		},
+		{
+			"collectionName": "ModuleCollection",
+			"className": "Module",
 			"attributes": [
 				{
 					"name": "ID",
@@ -72,22 +132,45 @@
 					"primKey": "true"
 				},
 				{
-					"name": "Nom",
+					"name": "Valide",
 					"scope": "public",
-					"type": "string",
+					"type": "bool",
 					"kind": "storage"
 				},
 				{
-					"name": "Prenom",
+					"name": "Elem",
 					"scope": "public",
-					"type": "string",
-					"kind": "storage"
-				},
+					"path": "Element",
+					"type": "Element",
+					"kind": "relatedEntity"
+				}
+			]
+		},
+		{
+			"collectionName": "ElementCollection",
+			"className": "Element",
+			"attributes": [
 				{
-					"name": "Age",
-					"scope": "public",
+					"name": "ID",
+					"kind": "storage",
 					"type": "long",
+					"autosequence": "true",
+					"unique": "true",
+					"primKey": "true"
+				},
+				{
+					"name": "Note",
+					"scope": "public",
+					"type": "string",
 					"kind": "storage"
+				},
+				{
+					"name": "moduleCollection",
+					"scope": "public",
+					"reversePath": true,
+					"path": "Elem",
+					"type": "ModuleCollection",
+					"kind": "relatedEntities"
 				}
 			]
 		}
